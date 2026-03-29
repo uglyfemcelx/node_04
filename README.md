@@ -16,6 +16,7 @@ body{
 #text{
     white-space:pre-wrap;
     line-height:1.6;
+    pointer-events: auto;
 }
 
 .glitch{
@@ -26,6 +27,7 @@ body{
 .secret{
     color:#ff00ff;
     cursor:pointer;
+    pointer-events:auto;
 }
 
 #ghostImage{
@@ -199,7 +201,7 @@ function afterStory(){
             window.location.href = "node5.html";
         });
 
-        text.appendChild(link);
+        document.body.appendChild(link);
     },9000);
 
     // hesitation detection
@@ -253,6 +255,9 @@ setInterval(()=>{
 }, 4000);
 
 type();
+
+link.style.marginTop = "20px";
+link.style.display = "block";
 
 </script>
 
