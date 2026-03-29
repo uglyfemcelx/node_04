@@ -25,7 +25,7 @@ body{
 }
 
 .secret{
-    color:#ff00ff;
+    color:#006000;
     cursor:pointer;
     pointer-events:auto;
 }
