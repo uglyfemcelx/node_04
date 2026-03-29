@@ -204,7 +204,7 @@ function afterStory(){
         link.textContent = "> ...something is still connected.";
 
         link.onclick = ()=>{
-            window.location.href = "node5.html";
+            window.location.href = "node5.com";
         };
 
         text.appendChild(link);
