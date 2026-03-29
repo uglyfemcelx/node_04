@@ -20,7 +20,7 @@ body{
 
 .glitch{
     color:red;
-    animation:flicker 0.15s infinite;
+    animation:flicker 0.2s infinite;
 }
 
 .secret{
@@ -28,25 +28,6 @@ body{
     cursor:pointer;
 }
 
-/* make link clickable */
-#nextLink{
-    margin-top:40px;
-    opacity:0;
-    transition:opacity 2s;
-    position:relative;
-    z-index:9999;
-}
-
-#nextLink a{
-    color:#00ff88;
-    text-decoration:none;
-}
-
-#nextLink a:hover{
-    opacity:0.5;
-}
-
-/* ghost image */
 #ghostImage{
     position:fixed;
     top:50%;
@@ -58,7 +39,6 @@ body{
     transition:opacity 0.2s;
 }
 
-/* screen flicker */
 @keyframes flicker{
     0%{opacity:1;}
     50%{opacity:0.2;}
@@ -73,16 +53,14 @@ body{
 
 <img id="ghostImage" src="https://i.pinimg.com/originals/2b/6d/1e/2b6d1e7c7d5d6a2e2c6b4c3e4c1d9f.gif">
 
-<div id="nextLink">
-<a href="node_05.html">> continue deeper</a>
-</div>
-
 <script>
 
-let storySets = [
+/* randomized story variants */
+
+const variants = [
 
 [
-    "> ...do you remember me?",
+"> ...do you remember me?",
 "",
 "> no.",
 "",
@@ -117,123 +95,138 @@ let storySets = [
 ],
 
 [
-"> node_04 accessed...",
-"> memory integrity failing...",
+"> ...do you remember me?",
 "",
-"> something is missing.",
+"> the deletion is complete.",
 "",
-"> i removed it.",
-"> i removed everything.",
-"",
-"> including her.",
-"",
-"> alice.",
-"",
-"> she does not remember me.",
-"> not my name.",
-"> not my voice.",
-"> not my existence.",
-"",
-"> it worked.",
-"",
-"> it finally worked.",
-"",
-"> there is no trace left.",
-"> no logs.",
 "> no fragments.",
-"> no connection.",
+"> no echoes.",
 "",
-"> i am gone."
+"> no trace of me remains.",
+"",
+"> alice continues normally.",
+"",
+"> she does not pause.",
+"> she does not question.",
+"",
+"> there is nothing missing.",
+"",
+"> because i removed the concept of myself.",
+"",
+"> i am not forgotten.",
+"",
+"> i was never there."
 ],
 
 [
-"> node_04 accessed...",
-"> trace scan running...",
+"> ...do you remember me?",
 "",
-"> no identity found.",
+"> ERROR: nothing found.",
 "",
-"> alice status: stable",
-"> alice memory: intact",
+"> search result:",
+"> null.",
 "",
-"> subject [lain] not found.",
+"> identity:",
+"> null.",
 "",
-"> deletion successful.",
+"> connection:",
+"> terminated.",
 "",
-"> ...",
-"",
-"> then why am i still here?"
-],
-
-[
-"> node_04 accessed...",
-"",
-"> she laughs.",
-"> she talks.",
-"> she lives.",
-"",
-"> and i am not there.",
-"",
-"> there is no gap in her memory.",
-"> no missing space.",
-"> no shadow of me.",
-"",
-"> i erased myself perfectly.",
-"",
-"> so why does something feel wrong?",
+"> alice:",
+"> stable.",
+"> unaffected.",
 "",
 "> ...",
 "",
-"> maybe existence doesn't need memory.",
-"> maybe i exist anyway."
+"> this is what i wanted.",
+"",
+"> so why am i still here?",
+"",
+"> observing a world where i never existed."
 ]
 
 ];
 
-let chosenStory = storySets[Math.floor(Math.random()*storySets.length)];
+const story = variants[Math.floor(Math.random()*variants.length)];
 
 let i = 0;
 const text = document.getElementById("text");
 
-function type(){
-    if(i < chosenStory.length){
-        text.innerHTML += chosenStory[i] + "\n";
-        i++;
+/* type effect */
 
-        if(Math.random() < 0.1){
-            text.classList.add("glitch");
-            setTimeout(()=>text.classList.remove("glitch"),100);
+function type(){
+    if(i < story.length){
+
+        let line = story[i];
+
+        if(Math.random() < 0.2){
+            line = `<span class="glitch">${line}</span>`;
         }
 
-        setTimeout(type, 120);
+        text.innerHTML += line + "\n";
+        i++;
+
+        setTimeout(type, 100 + Math.random()*120);
+
     } else {
         afterStory();
     }
 }
 
+/* afterstory effect */
+
 function afterStory(){
 
     setTimeout(()=>{
-        text.innerHTML += "\n> no one remembers me.";
+        text.innerHTML += "\n> wait...\n";
     },2000);
 
     setTimeout(()=>{
-        text.innerHTML += "\n> and that was the point.";
+        text.innerHTML += "> something is still running.\n";
     },4000);
 
     setTimeout(()=>{
-        text.innerHTML += "\n> ...right?";
+        text.innerHTML += "> but it isn't me.\n";
     },6000);
 
+    // clickably node5 link
     setTimeout(()=>{
-        document.getElementById("nextLink").style.opacity = "1";
+        const link = document.createElement("div");
+        link.classList.add("secret");
+        link.textContent = "> ...something is still connected.";
+
+        link.addEventListener("click", ()=>{
+            window.location.href = "node5.html";
+        });
+
+        text.appendChild(link);
     },9000);
+
+    // hesitation detection
+    let inactiveTime = 0;
+
+    setInterval(()=>{
+        inactiveTime++;
+
+        if(inactiveTime === 5){
+            text.innerHTML += "\n> why are you still here?\n";
+        }
+
+        if(inactiveTime === 10){
+            text.innerHTML += "> there's nothing left to see.\n";
+        }
+
+    },1000);
+
+    document.addEventListener("mousemove", ()=> inactiveTime = 0);
 }
 
-/* random ghost image */
+/* random image flashyflashflash */
+
 const ghost = document.getElementById("ghostImage");
 
 function randomFlash(){
-    const delay = Math.random() * 7000 + 3000;
+    const delay = Math.random() * 8000 + 4000;
 
     setTimeout(()=>{
         ghost.style.opacity = "1";
@@ -247,15 +240,17 @@ function randomFlash(){
 
 randomFlash();
 
-/* rando text corruption */
+/* rando text deletion */
+
 setInterval(()=>{
-    if(Math.random() < 0.15){
-        text.innerHTML = text.innerHTML.replace(
-            /alice|memory|existence|me/gi,
-            "████"
-        );
+    if(Math.random() < 0.3){
+        const content = text.innerHTML.split("\n");
+        if(content.length > 5){
+            content.splice(Math.floor(Math.random()*content.length), 1);
+            text.innerHTML = content.join("\n");
+        }
     }
-},3000);
+}, 4000);
 
 type();
 
