@@ -53,7 +53,7 @@ body{
 
 <div id="text"></div>
 
-<img id="ghostImage" src="https://i.pinimg.com/originals/2b/6d/1e/2b6d1e7c7d5d6a2e2c6b4c3e4c1d9f.gif">
+<img id="ghostImage" src="https://i.pinimg.com/originals/95/13/49/95134990bb9cf476b5209154bdc3e4d5.gif">
 
 <script>
 
@@ -267,8 +267,6 @@ setInterval(()=>{
 
 type();
 
-link.style.marginTop = "20px";
-link.style.display = "block";
 
 </script>
 
