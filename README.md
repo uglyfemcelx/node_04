@@ -254,6 +254,17 @@ setInterval(()=>{
     }
 }, 4000);
 
+
+/* rando text corruption */
+setInterval(()=>{
+    if(Math.random() < 0.15){
+        text.innerHTML = text.innerHTML.replace(
+            /alice|memory|existence|me/gi,
+            "████"
+        );
+    }
+},3000);
+
 type();
 
 link.style.marginTop = "20px";
