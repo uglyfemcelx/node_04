@@ -198,7 +198,7 @@ function afterStory(){
         link.textContent = "> ...something is still connected.";
 
         link.addEventListener("click", ()=>{
-            window.location.href = "node5.html";
+            window.location.href = "https://uglyfemcelx.github.io/node_05/";
         });
 
         document.body.appendChild(link);
