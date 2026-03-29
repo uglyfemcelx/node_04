@@ -58,7 +58,7 @@ body{
 
 <div id="text"></div>
 
-<img id="ghostImage" src="https://i.pinimg.com/originals/5f/9d/63/5f9d638d3b0b6f79d6c52f5d6b52d9a2.gif">
+<img id="ghostImage" src="https://i.pinimg.com/originals/95/13/49/95134990bb9cf476b5209154bdc3e4d5.gif">
 
 <script>
 
