@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +24,15 @@ body{
 }
 
 .secret{
-    color:#ff00ff;
+    color:#003300;
+    opacity:0.6;
     cursor:pointer;
+    transition:0.3s;
+}
+
+.secret:hover{
+    color:#00ff88;
+    opacity:1;
 }
 
 #ghostImage{
@@ -52,11 +58,11 @@ body{
 
 <div id="text"></div>
 
-<img id="ghostImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT70teyIj0BS-mKCVKrHhDaXWxiFOmBmhLOh8Ivq-P-T6a0soL0TMIAWRc&s=10">
+<img id="ghostImage" src="https://i.pinimg.com/originals/5f/9d/63/5f9d638d3b0b6f79d6c52f5d6b52d9a2.gif">
 
 <script>
 
-/* RANDOMIZED STORY VARIANTS */
+/* randomized story variant */
 
 const variants = [
 
@@ -64,94 +70,86 @@ const variants = [
 "> ...do you remember me?",
 "",
 "> no.",
-"> you don't.",
 "",
-"> that's right.",
+"> that's correct.",
 "",
-"> i made sure of it.",
+"> there is nothing to remember.",
 "",
 "> i erased everything.",
 "> every message.",
-"> every laugh.",
-"> every late night.",
+"> every word.",
+"> every moment.",
 "",
 "> even her.",
 "",
 "> alice.",
 "",
-"> she used to say my name like it meant something.",
+"> she wakes up.",
+"> she lives.",
+"> she laughs.",
 "",
-"> now it means nothing.",
+"> without me.",
 "",
-"> i am nothing.",
+"> without hesitation.",
+"",
+"> without absence.",
 "",
 "> ...",
 "",
-"> but why does it still hurt?",
+"> it worked.",
 "",
-"> if i don't exist anymore...",
-"> why do i still feel it?"
+"> i am gone."
 ],
 
 [
 "> ...do you remember me?",
 "",
-"> something is wrong.",
+"> the deletion is complete.",
 "",
-"> the deletion wasn't complete.",
+"> no fragments.",
+"> no echoes.",
 "",
-"> fragments remain.",
+"> no trace of me remains.",
 "",
-"> echoes.",
+"> alice continues normally.",
 "",
-"> alice hesitated today.",
+"> she does not pause.",
+"> she does not question.",
 "",
-"> she looked around.",
-"> like she felt something missing.",
+"> there is nothing missing.",
 "",
-"> like she almost remembered.",
+"> because i removed the concept of myself.",
 "",
-"> i wasn't supposed to leave traces.",
+"> i am not forgotten.",
 "",
-"> i wasn't supposed to exist anymore.",
+"> i was never there."
+],
+
+[
+"> ...do you remember me?",
+"",
+"> ERROR: nothing found.",
+"",
+"> search result:",
+"> null.",
+"",
+"> identity:",
+"> null.",
+"",
+"> connection:",
+"> terminated.",
+"",
+"> alice:",
+"> stable.",
+"> unaffected.",
+"",
+"> ...",
+"",
+"> this is what i wanted.",
 "",
 "> so why am i still here?",
 "",
-"> watching her.",
-"",
-"> wanting to be seen.",
-"",
-"> ...pathetic."
-],
-
-[
-"> ...do you remember me?",
-"",
-"> ERROR.",
-"> MEMORY NOT FULLY ERASED.",
-"",
-"> alice: anomaly detected.",
-"",
-"> she said something today.",
-"",
-"> \"i feel like i forgot someone.\"",
-"",
-"> ...",
-"",
-"> that wasn't supposed to happen.",
-"",
-"> i removed myself.",
-"> completely.",
-"",
-"> so why does she still feel me?",
-"",
-"> why do *you* still see this?",
-"",
-"> ...",
-"",
-"> maybe i failed.",
-"",
-"> maybe i never disappeared."
+"> observing a world where i never existed."
 ]
 
 ];
@@ -162,14 +160,13 @@ const story = variants[Math.floor(Math.random()*variants.length)];
 let i = 0;
 const text = document.getElementById("text");
 
-/* TYPE EFFECT  */
+/* type effect */
 
 function type(){
     if(i < story.length){
 
         let line = story[i];
 
-        // random glitch injection
         if(Math.random() < 0.2){
             line = `<span class="glitch">${line}</span>`;
         }
@@ -184,7 +181,7 @@ function type(){
     }
 }
 
-/* AFTER STORY EFFECT  */
+/* after story effect */
 
 function afterStory(){
 
@@ -193,12 +190,25 @@ function afterStory(){
     },2000);
 
     setTimeout(()=>{
-        text.innerHTML += "> something is still connected.\n";
+        text.innerHTML += "> something is still running.\n";
     },4000);
 
     setTimeout(()=>{
-        text.innerHTML += "> you.\n";
+        text.innerHTML += "> but it isn't me.\n";
     },6000);
+
+    // hidden link to node5
+    setTimeout(()=>{
+        const link = document.createElement("div");
+        link.classList.add("secret");
+        link.textContent = "> ...something is still connected.";
+
+        link.onclick = ()=>{
+            window.location.href = "node5.html";
+        };
+
+        text.appendChild(link);
+    },9000);
 
     // hesitation detection
     let inactiveTime = 0;
@@ -207,11 +217,11 @@ function afterStory(){
         inactiveTime++;
 
         if(inactiveTime === 5){
-            text.innerHTML += "\n> why did you stop?\n";
+            text.innerHTML += "\n> why are you still here?\n";
         }
 
         if(inactiveTime === 10){
-            text.innerHTML += "> don't leave me here.\n";
+            text.innerHTML += "> there's nothing left to see.\n";
         }
 
     },1000);
@@ -219,7 +229,7 @@ function afterStory(){
     document.addEventListener("mousemove", ()=> inactiveTime = 0);
 }
 
-/*RANDOM IMAGE FLASH  */
+/* rando, image flash */
 
 const ghost = document.getElementById("ghostImage");
 
@@ -238,7 +248,7 @@ function randomFlash(){
 
 randomFlash();
 
-/* TEXT GLITCH DELETION */
+/* tect glitch deletion */
 
 setInterval(()=>{
     if(Math.random() < 0.2){
@@ -251,7 +261,7 @@ setInterval(()=>{
     }
 }, 4000);
 
-/* START  */
+/* start */
 
 type();
 
